@@ -13,5 +13,4 @@ Being forced to travel hundred of miles from home for mental health treatment ca
 
 “The UK Government promised to end inappropriate out of area placements by April 2021 but it’s clear it will miss this target. Given the damage this practice can have on people needing mental health support, they must redouble their efforts to meet this commitment as soon as possible.”
 
-[out of are placements](OAP-March-2021.png)
-<img src="OAP-March-2021.png" width=80%>
+<img src="OAP-March-2021.png" width=70%>
