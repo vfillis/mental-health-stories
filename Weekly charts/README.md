@@ -2,7 +2,11 @@
 
 As part of my newsletter I will analyse and visualise data around mental health services. 
 
-This is data I have analysed so far: 
+My aim is to provide an insight into the accessibility and state of NHS mental health services through official data releases as well as Freedom of Information requests. 
+
+Results and visualisations will be published on Instagram, Twitter and my weekly newsletter. 
+
+So far, I have looked at the following issues:
 
 - inappropriate Out of Area Placements in mental health services
 - waiting times for referrals with eating disorder issues for those aged 0-18 
