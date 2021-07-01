@@ -17,4 +17,5 @@ Being forced to travel hundred of miles from home for mental health treatment ca
 
 “The UK Government promised to end inappropriate out of area placements by April 2021 but it’s clear it will miss this target. Given the damage this practice can have on people needing mental health support, they must redouble their efforts to meet this commitment as soon as possible.”
 
+A spokesperson for NHS England said: "The NHS remain committed to eliminating adult acute out of area placements as soon as possible, whilst ensuring it is done in a way that does not compromise patient safety."
 
