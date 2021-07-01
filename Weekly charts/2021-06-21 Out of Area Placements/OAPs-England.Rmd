@@ -1,0 +1,248 @@
+---
+title: "Out of Area Placements England"
+author: "Vanessa Fillis"
+date: "08/01/2021"
+output: html_document
+---
+
+# Out of Area Placements in Mental Health Services in England
+
+## Activate packages
+
+```{r}
+library(lubridate)
+library(tidyr)
+library(dplyr)
+```
+
+## Data import
+
+In a previous step I have downloaded data for Out of Area Placements (OAPs) in mental health services between October 2016 and October 2020 (as this was the latest available data set) from [NHS Digital](https://digital.nhs.uk/data-and-information/publications/statistical/out-of-area-placements-in-mental-health-services). I have merged them, so that I only have one CSV to import. 
+
+```{r}
+OAPs <- read.csv("oaps2016to2021.csv", stringsAsFactors = FALSE)
+```
+
+## Inspect the data frame
+
+What I can see:
+
+- The column containing the date is not in date format, but as character. I have to add a date column that contains the publication period in date format. Because the data frame is large I will to this *after* I have filtered for the questions I want to look at, although this means I have to do it several times. But trying to do it before, led to R crashing. 
+- The column **value** is in character format as well. I will transform it into numeric values. 
+
+```{r}
+head(OAPs)
+OAPs$value <- as.numeric(OAPs$value)
+head(OAPs)
+```
+
+## Filter for inappropriate OAPs in England that are active at the end of the period 
+
+At first I want to look at inappropriate OAPs in England that are active at the end of each month. 
+
+For almost all months the term **Out of Area Placement** is abbreviated. Only in July 2019, the full term has been used. This has to be considered when writing the filter. 
+
+```{r}
+OAPs.England.active <- subset(OAPs, OAPs$PublicationType == "Month")
+
+OAPs.England.active <- subset(OAPs.England.active, OAPs.England.active$Question == "Inappropriate OAPs active at period end" | OAPs.England.active$Question == "Inappropriate out of area placements active at period end")
+
+OAPs.England.active <- subset(OAPs.England.active, OAPs.England.active$Breakdown1 == "England")
+```
+
+### Convert date column
+
+Now I will convert the date column. 
+
+```{r}
+#split date in PublicationPeriod in beginning and end of publication period
+OAPs.England.active <- tidyr::separate(data = OAPs.England.active, col = PublicationPeriod, into = c("beginning.of.publication.period", "end.of.publication.period"), sep = "-")
+
+OAPs.England.active$beginning.of.publication.period <- lubridate::dmy(OAPs.England.active$beginning.of.publication.period)
+
+OAPs.England.active$end.of.publication.period <- lubridate::dmy(OAPs.England.active$end.of.publication.period)
+```
+
+### Delete empty columns
+
+Some columns are empty. I will delete them. 
+
+```{r}
+OAPs.England.active <- OAPs.England.active[-c(7:11)]
+```
+
+### Export
+
+Now I can export the data frame and will visualise it using Flourish. 
+
+```{r}
+write.csv(OAPs.England.active, file = "OAPs_Eng_active.csv")
+```
+
+## Filter for total inappropriate OAP days in England for each period
+
+I also want to look at total inappropriate OAP days in England. The next steps will be very similar to the previous ones. 
+
+```{r}
+OAPs.England.days <- subset(OAPs, OAPs$PublicationType == "Month")
+
+OAPs.England.days <- subset(OAPs.England.days, OAPs.England.days$Question == "Total number of inappropriate OAP days over the period" | OAPs.England.days$Question == "Total number of inappropriate out of area placement days over the period")
+
+OAPs.England.days <- subset(OAPs.England.days, OAPs.England.days$Breakdown1 == "England")
+```
+
+### Convert date column
+
+Now I will convert the date column. 
+
+```{r}
+#split date in PublicationPeriod in beginning and end of publication period
+OAPs.England.days <- tidyr::separate(data = OAPs.England.days, col = PublicationPeriod, into = c("beginning.of.publication.period", "end.of.publication.period"), sep = "-")
+
+OAPs.England.days$beginning.of.publication.period <- lubridate::dmy(OAPs.England.days$beginning.of.publication.period)
+
+OAPs.England.days$end.of.publication.period <- lubridate::dmy(OAPs.England.days$end.of.publication.period)
+```
+
+### Delete empty columns
+
+Some columns are empty. I will delete them. 
+
+```{r}
+OAPs.England.days <- OAPs.England.days[-c(7:11)]
+```
+
+### Export
+
+Now I can export the data frame and will visualise it using Flourish. 
+
+```{r}
+write.csv(OAPs.England.days, file = "OAPs_Eng_days.csv")
+```
+
+## Filter for total inappropriate OAP costs in England for each period
+
+I also want to look at costs caused by inappropriate OAPs each month. The next steps will be very similar to the previous ones. 
+
+```{r}
+OAPs.England.costs <- subset(OAPs, OAPs$PublicationType == "Month")
+
+OAPs.England.costs <- subset(OAPs.England.costs, OAPs.England.costs$Question == "Total Cost For Inappropriate OAPs in Period" | OAPs.England.costs$Question == "Total Cost For Inappropriate out of area placements in Period")
+
+OAPs.England.costs <- subset(OAPs.England.costs, OAPs.England.costs$Breakdown1 == "England")
+```
+
+### Convert date column
+
+Now I will convert the date column. 
+
+```{r}
+#split date in PublicationPeriod in beginning and end of publication period
+OAPs.England.costs <- tidyr::separate(data = OAPs.England.costs, col = PublicationPeriod, into = c("beginning.of.publication.period", "end.of.publication.period"), sep = "-")
+
+OAPs.England.costs$beginning.of.publication.period <- lubridate::dmy(OAPs.England.costs$beginning.of.publication.period)
+
+OAPs.England.costs$end.of.publication.period <- lubridate::dmy(OAPs.England.costs$end.of.publication.period)
+```
+
+### Delete empty columns
+
+Some columns are empty. I will delete them. 
+
+```{r}
+OAPs.England.costs <- OAPs.England.costs[-c(7:11)]
+```
+
+### Export
+
+Now I can export the data frame and will visualise it using Flourish. 
+
+```{r}
+write.csv(OAPs.England.costs, file = "OAPs_Eng_costs.csv")
+```
+
+
+## How many receiving providers are private in October 2020?
+
+I want to look at where patients are being sent and if the receiving providers are private or NHS organisations. 
+
+```{r}
+OAPs.receivers <- subset(OAPs, OAPs$PublicationType == "Month")
+
+OAPs.receivers <- subset(OAPs.receivers, OAPs.receivers$Question == "Inappropriate OAPs active at period end" | OAPs.receivers$Question == "Inappropriate out of area placements active at period end")
+
+OAPs.receivers <- subset(OAPs.receivers, OAPs.receivers$Breakdown1 == "ReceivingProvider")
+```
+
+### Convert date column
+
+```{r}
+#split date in PublicationPeriod in beginning and end of publication period
+OAPs.receivers <- tidyr::separate(data = OAPs.receivers, col = PublicationPeriod, into = c("beginning.of.publication.period", "end.of.publication.period"), sep = "-")
+
+OAPs.receivers$beginning.of.publication.period <- lubridate::dmy(OAPs.receivers$beginning.of.publication.period)
+
+OAPs.receivers$end.of.publication.period <- lubridate::dmy(OAPs.receivers$end.of.publication.period)
+```
+
+### Delete empty columns
+
+```{r}
+OAPs.receivers <- OAPs.receivers[-c(9:11)]
+```
+
+### Filter for October 2020
+
+I want to look at the receiving organisations in October 2020. 
+
+```{r}
+OAPs.receivers.mar21 <- subset(OAPs.receivers, OAPs.receivers$beginning.of.publication.period == "2021-03-01")
+```
+
+### Using grepl()
+
+To find out which of these organisations were private, I will look at their **Breakdown1Code**. 
+
+I used [this table published by the NHS on organisation coding frames](https://datadictionary.nhs.uk/supporting_information/organisation_coding_frames.html) to find out what the codes stand for. 
+
+- with 8, A, D, N = independent provider
+-	with R, T = NHS trust or NHS Care trust
+
+```{r}
+OAPs.receivers.mar21$NHS <- grepl("^[R]|^[T]", OAPs.receivers.mar21$Breakdown1Code)
+```
+
+### Remove Unknown and England
+
+Some receiving organisations are unknown. Additionally, the data frame also contains the total number of sending organisations. 
+
+```{r}
+OAPs.receivers.mar21 <- OAPs.receivers.mar21[!(OAPs.receivers.mar21$Breakdown1Code=="999" | OAPs.receivers.mar21$Breakdown1Code=="England"),]
+```
+
+### Remove those with 0 days
+
+```{r}
+OAPs.receivers.mar21 <- OAPs.receivers.mar21[!(OAPs.receivers.mar21$value=="0"),]
+```
+
+### Count true and false
+
+```{r}
+# How many receiving trusts are there overall?
+sum(table(OAPs.receivers.mar21$NHS))
+
+# How many are NHS (= TRUE) and how many private (= FALSE)?
+table(OAPs.receivers.mar21$NHS)
+
+## dividing the number of false values by the sum
+74/95*100
+```
+
+### Export
+
+```{r}
+write.csv(OAPs.receivers.mar21, file = "OAPs_receivers_mar21.csv")
+```
+
+
