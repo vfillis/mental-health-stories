@@ -1,7 +1,7 @@
 # Inappropriate Out of Area Placements in mental health services
 
 Published: [Newsletter June 29](https://mailchi.mp/ea478d43d31d/5-minutes-against-stigma-1) & [Instagram June 21](https://www.instagram.com/p/CQYl4wKjqc1/)  
-Data source: 
+Data source: [Out of Area Placements in Mental Health Services](https://digital.nhs.uk/data-and-information/publications/statistical/out-of-area-placements-in-mental-health-services)
 
 **670 mental health patients** were still placed in hospitals away from their home at the end of March 2021. They were sent out of their usual area for mental health treatment because no bed was available for them locally. 
 
