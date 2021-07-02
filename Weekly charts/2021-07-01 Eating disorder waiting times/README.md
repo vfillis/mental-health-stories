@@ -1,6 +1,6 @@
 # Waiting times / eating disorder referrals 
 
-Published:
+Published: [Instagram 2 July](https://www.instagram.com/p/CQ0he7Gj9AC/)
 <br>Data source: 
 
 **More than 9,000 children and young people** who have been referred to mental health services for eating disorder issues were **still waiting** to start treatment at the end of March. 62% of those aged 0 to 18 were already waiting for **over 12 weeks**. 
