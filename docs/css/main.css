@@ -1,0 +1,58 @@
+body {
+  font: normal 17px/1.9em "Inter", "Source Sans Pro","Helvetica Neue", Arial, sans-serif;
+  /*text-align: center;*/
+}
+
+.nav a {
+  float: right;
+  color: black;
+  text-align: center;
+  padding: 20px 25px;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+.back-to-start a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 20px 25px;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+/* Change the color of links on hover */
+.nav a:hover, .back-to-start a:hover {
+  text-decoration: underline;
+  text-decoration-color: #bde0fe;
+}
+
+header {
+  padding: 20px;
+  text-align: center;
+  font-size: 1.1em;
+  font-family:monospace;
+}
+
+#mc-embedded-subscribe {
+  background-color: #bde0fe;
+  border:none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+#mce-EMAIL {
+  background-color: #fff;
+  border: 1;
+  border-radius: 2px;
+  color: #bde0fe;
+  padding: .6em;
+  transition: background-color .2s;
+  width: 100%;
+}
