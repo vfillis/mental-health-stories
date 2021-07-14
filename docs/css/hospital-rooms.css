@@ -1,0 +1,62 @@
+.content {
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 3%;
+}
+
+.content a {
+  color: black;
+}
+
+.feature {
+  position: relative;
+  margin-left: 15%;
+  margin-right: 15%;
+  width: 80%;
+}
+
+.feature-text {
+  position: absolute;
+  text-align: center;
+  bottom: 5%;
+  color: white;
+  padding-left: 2%;
+  padding-right: 2%;
+  margin-right: 15%;
+  overflow:hidden;
+}
+
+.feature-text p {
+  font-size: 1em;
+}
+
+.feature-text h2 {
+  font-size: 2em;
+}
+
+.image-tim-niamh {
+  width:50%;
+  float:right;
+  margin-left: 0;
+  margin-right: 0;
+  padding:3%;
+}
+
+figcaption {
+  font-size:14px;
+  color: grey;
+}
+
+blockquote {
+  margin:3% auto;
+  border-left:4px solid #bde0fe;
+  padding: 1% 0 1% 3%;
+  position: relative;
+}
+
+hr.solid {
+  border-top: 3px solid #bde0fe;
+  width:20%;
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
