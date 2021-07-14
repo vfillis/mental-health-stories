@@ -22,8 +22,8 @@
   color: white;
   padding-left: 2%;
   padding-right: 2%;
-  margin-right: 15%;
   overflow:hidden;
+  width: 80%;
 }
 
 .feature-text p {
