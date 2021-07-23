@@ -140,7 +140,7 @@ p {
 	bottom: 0;
 	left: 0;
 	background-size: cover;
-	background-position: center;
+	background-position: bottom;
 	transition: transform .2s;
 }
 
@@ -358,4 +358,3 @@ font-size: 44px !important;
     content: " (" attr(href) ")";
   }
 }
-
