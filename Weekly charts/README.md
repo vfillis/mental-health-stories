@@ -8,5 +8,7 @@ Results and visualisations will be published on Instagram, Twitter and my weekly
 
 So far, I have looked at the following issues:
 
-- inappropriate Out of Area Placements in mental health services
-- waiting times for referrals with eating disorder issues for those aged 0-18 
+- Inappropriate Out of Area Placements in mental health services
+- Waiting times for referrals with eating disorder issues for those aged 0-18 
+- The recruitment of new nursing staff in mental health services 
+- Rising detentions under the Mental Health Act
