@@ -1,0 +1,90 @@
+.content {
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 3%;
+}
+
+.content a {
+  color: black;
+}
+
+.feature {
+  position: relative;
+  margin-left: 15%;
+  margin-right: 15%;
+  width: 80%;
+}
+
+.feature-text {
+  position: absolute;
+  text-align: center;
+  bottom: 5%;
+  color: white;
+  padding-left: 2%;
+  padding-right: 2%;
+  overflow:hidden;
+  width: 75%;
+}
+
+
+.feature-text p {
+  font-size: 1em;
+}
+
+.feature-text h2 {
+  font-size: 2em;
+}
+
+
+@media only screen and (max-width: 960px) {
+  .feature-text h2 {
+    font-size: 12px;
+    padding: 0;
+  }
+  .feature-text {
+    bottom: 0;
+    padding: 0;
+  }
+  .feature-text p {
+    font-size: 8px;
+    padding: 0;
+  }
+}
+
+figcaption {
+  font-size:14px;
+  color: grey;
+}
+
+blockquote {
+  margin:3% auto;
+  border-left:4px solid #bde0fe;
+  padding: 1% 0 1% 3%;
+  position: relative;
+}
+
+hr.solid {
+  border-top: 3px solid #bde0fe;
+  width:20%;
+  margin-top: 10%;
+  margin-bottom: 5%;
+}
+
+/** About the data box **/
+.data-infobox {
+  background-color: #bde0fe; 
+  border-left-color: #f1c40f;
+  padding: 0.9375rem 0.9375rem 0.9375rem 0.625rem;
+  margin: 1.25rem 1.25rem 1.25rem 0.3125rem;
+  border: 1px solid #eee;
+  border-left-width: 0.3125rem;
+  border-radius: 0.3125rem 0.1875rem 0.1875rem 0.3125rem;
+}
+
+/* Visualisations */
+.flourish-embed {
+  position:relative;
+  width:80%;
+  height: auto;
+  margin: 0 auto;
+}
