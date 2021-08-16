@@ -19,7 +19,7 @@
   position: absolute;
   text-align: center;
   bottom: 5%;
-  color: white;
+  color: black;
   padding-left: 2%;
   padding-right: 2%;
   overflow:hidden;
@@ -49,6 +49,14 @@
     font-size: 8px;
     padding: 0;
   }
+}
+
+.image-helen-rees {
+  width:30%;
+  float:right;
+  margin-left: 0;
+  margin-right: 0;
+  padding:3%;
 }
 
 figcaption {
