@@ -3,13 +3,17 @@
 
 The article was published on 26 August 2021 and can be read [here](). 
 
-## Get the data
+## Data analysis and visualisation
 
 The story was based on data from different sources. 
 
 **1. Available mental illness beds**
 
-NHS England publishes data on available mental illness beds.  
+NHS England publishes [data on available mental illness beds](https://www.england.nhs.uk/statistics/statistical-work-areas/bed-availability-and-occupancy/bed-data-overnight/). This includes a time series from 1987. 
+
+The data used in the story can be found [here](). 
+
+<img src="OAP-March-2021.png" width=70%>
 
 **2. Bed occupancy rates**
 
@@ -19,6 +23,8 @@ The request has been sent to 50 NHS mental health trusts in England. 40 trusts r
 
 The data can be found [here](). 
 
+<img src="OAP-March-2021.png" width=70%>
+
 **3. Detained and informal patients**
 
 Data on the number of detained and informal patients in adult mental health wards in NHS trusts has been obtained through Freedom of Information requests. 
@@ -27,12 +33,19 @@ The request has been sent to 50 NHS mental health trusts in England. 35 trusts r
 
 The data can be found [here](). 
 
+<img src="OAP-March-2021.png" width=70%>
+
 **4. Referrals to mental health services**
 
+Data on referrals to mental health services is part of the [Mental Health Services Monthly Statistics](https://digital.nhs.uk/data-and-information/publications/statistical/mental-health-services-monthly-statistics/performance-may-provisional-june-2021). 
 
-Data on the accommodation status of mental health patients as well as dedicated housing support staff has been obtained through Freedom of Information requests. 
+I downloaded the CSV files from April 2019 to May 2021 (as this was the latest available data) and have merged them using the command line. I then analysed the data in R. The script can be found [here](). 
 
-## Data visualisations
+The final data can be found [here]().
+
+<img src="OAP-March-2021.png" width=70%>
+
+## Link to data visualisations
 
 - [XXX]()
 - [XXX]()
