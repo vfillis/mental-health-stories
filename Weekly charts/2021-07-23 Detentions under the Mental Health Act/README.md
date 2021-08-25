@@ -19,6 +19,6 @@ This is one of the reasons why campaigners have been calling for a reform to the
 
 Furthermore, people from Black and Black British groups are **more likely to be detained**. Data from 2019/20 shows that the rate for Black or Black British people to be detained is higher than in any other ethnic group.
 
-In their report *[Monitoring the Mental Health Act in 2018/19]*(https://webarchive.nationalarchives.gov.uk/20200516222734/https://www.cqc.org.uk/publications/major-report/monitoring-mental-health-act-201819) the **Care Quality Commission** said: "The overrepresentation of some Black and minority ethnic (BME) groups who are detained under the MHA continues to be a particular cause for concern."
+In their report *[Monitoring the Mental Health Act in 2018/19](https://webarchive.nationalarchives.gov.uk/20200516222734/https://www.cqc.org.uk/publications/major-report/monitoring-mental-health-act-201819)* the **Care Quality Commission** said: "The overrepresentation of some Black and minority ethnic (BME) groups who are detained under the MHA continues to be a particular cause for concern."
 
 <img src="detentions-by-ethnicity.png" width=70%>
