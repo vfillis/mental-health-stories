@@ -1,0 +1,166 @@
+---
+title: "Inpatients in adult mental health services"
+author: "Vanessa Fillis"
+date: "09/08/2021"
+output: html_document
+---
+
+# Inpatients in adult mental health services
+
+The Mental Health Services Monthly Statistics include data about this.
+
+## Activating packages
+
+```{r}
+library(lubridate)
+library(tidyr)
+library(dplyr)
+```
+
+## Importing the data 
+
+In a previous step I have downloaded data for Mental Health Services Monthly Statistics between April 2019 and May 2021 (as this was the latest data release) from [NHS Digital](https://digital.nhs.uk/data-and-information/publications/statistical/mental-health-services-monthly-statistics/). I have already merged them, so that I only have one CSV to import. 
+
+```{r}
+MHSDS <- read.csv("MHSDS2019to2021.csv", stringsAsFactors = FALSE)
+```
+
+## Inspecting the data frame
+
+Inspecting **MHSDS** shows that the columns containing the date and the value are in character format. We need them as date and numeric format. 
+
+Additionally the headers are repeated several times in the data frame. This probably is a result from merging the 25 different CSVs. 
+
+```{r}
+head(MHSDS)
+```
+
+### Cleaning the data frame
+
+```{r}
+MHSDS <- MHSDS[!(MHSDS$REPORTING_PERIOD_START =="REPORTING_PERIOD_START"),]
+MHSDS <- MHSDS[!(MHSDS$REPORTING_PERIOD_START =="REPORTING_PERIOD_END"),]
+```
+
+### Formating the date columns 
+
+There are two date columns: **REPORTING_PERIOD_START** and **REPORTING_PERIOD_END**. The date in there is stored in two different formats. Either as DD/MM/YYYY or as YYYY-MM-DD. 
+
+```{r}
+unique(MHSDS$REPORTING_PERIOD_START)
+```
+
+Using the *parse_date_time()* function from the *lubridate* package we can specify two orders that fit the way the date is structured in the **MHSDS** data frame. 
+
+```{r}
+MHSDS$start.reporting.period <- lubridate::parse_date_time(MHSDS$REPORTING_PERIOD_START, orders = c("dmy", "ymd"))
+MHSDS$end.reporting.period <- lubridate::parse_date_time(MHSDS$REPORTING_PERIOD_END, orders = c("dmy", "ymd"))
+```
+
+### Turning the value into numeric 
+
+When no data is available for a measure, there is an asterisk (*) instead of a number. 
+
+When we transform the **VALUE** column into numeric, NAs are replacing them. 
+
+```{r}
+MHSDS$MEASURE_VALUE <- as.numeric(MHSDS$MEASURE_VALUE)
+head(MHSDS)
+```
+
+## Reordering the data frame
+
+Now that we have transformed the date column from character into date and the value column into numeric, we can delete the columns we don't need anymore (for example the original date columns in character format). 
+
+We will also change the order of the remaining columns. 
+
+```{r}
+#Move the columns containing the date in the right format to the front
+MHSDS <- MHSDS %>%
+  relocate(start.reporting.period, end.reporting.period, .before = REPORTING_PERIOD_START)
+#Delete unneccessary columns such as the old date columns and the column containing the Status
+MHSDS <- MHSDS[-c(3:5)]
+```
+
+## Filter for open ward stays
+
+Data is stored in the following measures which we will filter for:
+
+- **AMH21:**	Open ward stays (adult mental health services) at the end of the reporting period
+
+
+```{r}
+#Filter
+MHSDS.inpatients <- subset(MHSDS, MHSDS$MEASURE_ID == "AMH21")
+
+```
+
+## Filter for England
+
+Next, we want to look at the totals for England. 
+
+The column **BREAKDOWN** contains a breakdown into national, CCG and provider data. 
+
+Therefore, we are filtering for "England". 
+
+```{r}
+MHSDS.inpatients.England <- subset(MHSDS.inpatients, MHSDS.inpatients$BREAKDOWN == "England")
+
+MHSDS.inpatients.England <- MHSDS.inpatients.England[-c(2:8)]
+
+#Export
+write.csv(MHSDS.inpatients.England, file = "MHSDS-inpatients-england.csv")
+```
+
+## Inpatients in NHS and private hospitals
+
+The patients are either placed in NHS hospitals or in private hospitals. 
+
+At first, we will filter for the data at provider level. 
+
+```{r}
+MHSDS.inpatients.provider <- subset(MHSDS.inpatients, MHSDS.inpatients$BREAKDOWN == "Provider")
+```
+
+To find out which of these organisations were private, we will look at the code in the column **PRIMARY_LEVEL**. 
+
+I used [this table published by the NHS on organisation coding frames](https://datadictionary.nhs.uk/supporting_information/organisation_coding_frames.html) to find out what the codes stand for. 
+
+- with 8, A, D, N = independent provider
+-	with R, T = NHS trust or NHS Care trust
+
+```{r}
+MHSDS.inpatients.provider$NHS <- grepl("^[R]|^[T]", MHSDS.inpatients.provider$PRIMARY_LEVEL)
+```
+
+## Deleting empty rows
+
+```{r}
+MHSDS.inpatients.provider <- na.omit(MHSDS.inpatients.provider)
+```
+
+## Calculating number of patients in NHS and private hospitals
+
+```{r}
+MHSDS.private <- MHSDS.inpatients.provider %>%
+  filter(NHS == FALSE) %>%
+  group_by(start.reporting.period) %>%
+  summarise(private.inpatients = sum(MEASURE_VALUE))
+
+MHSDS.NHS<- MHSDS.inpatients.provider %>%
+  filter(NHS == TRUE) %>%
+  group_by(start.reporting.period) %>%
+  summarise(NHS.inpatients = sum(MEASURE_VALUE))
+
+MHSDS.NHS.private <- merge(MHSDS.NHS, MHSDS.private)
+
+#Export
+write.csv(MHSDS.NHS.private, file = "inpatients-private-NHS.csv")
+
+```
+
+
+
+
+
+

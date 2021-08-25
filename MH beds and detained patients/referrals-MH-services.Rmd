@@ -1,0 +1,117 @@
+---
+title: "Referrals to mental health services"
+author: "Vanessa Fillis"
+date: "16/08/2021"
+output: html_document
+---
+
+# Referrals to mental health services
+
+The Mental Health Services Monthly Statistics include data about this.
+
+## Activating packages
+
+```{r}
+library(lubridate)
+library(tidyr)
+library(dplyr)
+```
+
+## Importing the data 
+
+In a previous step I have downloaded data for Mental Health Services Monthly Statistics between April 2019 and May 2021 (as this was the latest data release) from [NHS Digital](https://digital.nhs.uk/data-and-information/publications/statistical/mental-health-services-monthly-statistics/). I have already merged them, so that I only have one CSV to import. 
+
+```{r}
+MHSDS <- read.csv("MHSDS2019to2021.csv", stringsAsFactors = FALSE)
+```
+
+## Inspecting the data frame
+
+Inspecting **MHSDS** shows that the columns containing the date and the value are in character format. We need them as date and numeric format. 
+
+Additionally the headers are repeated several times in the data frame. This probably is a result from merging the 25 different CSVs. 
+
+```{r}
+head(MHSDS)
+```
+
+### Cleaning the data frame
+
+```{r}
+MHSDS <- MHSDS[!(MHSDS$REPORTING_PERIOD_START =="REPORTING_PERIOD_START"),]
+MHSDS <- MHSDS[!(MHSDS$REPORTING_PERIOD_START =="REPORTING_PERIOD_END"),]
+```
+
+### Formating the date columns 
+
+There are two date columns: **REPORTING_PERIOD_START** and **REPORTING_PERIOD_END**. The date in there is stored in two different formats. Either as DD/MM/YYYY or as YYYY-MM-DD. 
+
+```{r}
+unique(MHSDS$REPORTING_PERIOD_START)
+```
+
+Using the *parse_date_time()* function from the *lubridate* package we can specify two orders that fit the way the date is structured in the **MHSDS** data frame. 
+
+```{r}
+MHSDS$start.reporting.period <- lubridate::parse_date_time(MHSDS$REPORTING_PERIOD_START, orders = c("dmy", "ymd"))
+MHSDS$end.reporting.period <- lubridate::parse_date_time(MHSDS$REPORTING_PERIOD_END, orders = c("dmy", "ymd"))
+```
+
+### Turning the value into numeric 
+
+When no data is available for a measure, there is an asterisk (*) instead of a number. 
+
+When we transform the **VALUE** column into numeric, NAs are replacing them. 
+
+```{r}
+MHSDS$MEASURE_VALUE <- as.numeric(MHSDS$MEASURE_VALUE)
+head(MHSDS)
+```
+
+## Reordering the data frame
+
+Now that we have transformed the date column from character into date and the value column into numeric, we can delete the columns we don't need anymore (for example the original date columns in character format). 
+
+We will also change the order of the remaining columns. 
+
+```{r}
+#Move the columns containing the date in the right format to the front
+MHSDS <- MHSDS %>%
+  relocate(start.reporting.period, end.reporting.period, .before = REPORTING_PERIOD_START)
+#Delete unneccessary columns such as the old date columns and the column containing the Status
+MHSDS <- MHSDS[-c(3:5)]
+```
+
+## Filter for England
+
+We want to look at the totals for England. 
+
+The column **BREAKDOWN** contains a breakdown into national, CCG and provider data. 
+
+Therefore, we are filtering for "England". 
+
+```{r}
+MHSDS.England <- subset(MHSDS, MHSDS$BREAKDOWN == "England")
+```
+
+## Filter for referrals
+
+Data on referrals is stored in the following measures which we will filter for:
+
+- **MHS32:**	New referrals
+- **CCR70:**	New Emergency Referrals to Crisis Care teams in the Reporting Period
+- **CCR71:**	New Urgent Referrals to Crisis Care teams in the Reporting Period
+
+```{r}
+MHSDS.England.referrals <- subset(MHSDS.England, MHSDS.England$MEASURE_ID == "MHS32" | MHSDS.England$MEASURE_ID == "CCR70" | MHSDS.England$MEASURE_ID == "CCR71")
+
+MHSDS.England.referrals <- MHSDS.England.referrals[-c(3:8)]
+```
+
+## Export data 
+
+```{r}
+write.csv(MHSDS.England.referrals, file = "MHSDS-referrals-England.csv")
+```
+
+
