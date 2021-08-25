@@ -13,7 +13,7 @@ NHS England publishes [data on available mental illness beds](https://www.englan
 
 The data used in the story can be found [here](). 
 
-<img src="data visualisations/bed-occupancy.png" width=70%>
+<img src="data visualisations/bed-availability-England.png" width=70%>
 
 **2. Bed occupancy rates**
 
@@ -23,7 +23,7 @@ The request has been sent to 50 NHS mental health trusts in England. 40 trusts r
 
 The data can be found [here](). 
 
-<img src="OAP-March-2021.png" width=70%>
+<img src="data visualisations/bed-occupancy.png" width=70%>
 
 **3. Detained and informal patients**
 
@@ -33,7 +33,7 @@ The request has been sent to 50 NHS mental health trusts in England. 35 trusts r
 
 The data can be found [here](). 
 
-<img src="OAP-March-2021.png" width=70%>
+<img src="data visualisations/detained-informal-patients.png" width=70%>
 
 **4. Referrals to mental health services**
 
@@ -43,7 +43,7 @@ I downloaded the CSV files from April 2019 to May 2021 (as this was the latest a
 
 The final data can be found [here]().
 
-<img src="OAP-March-2021.png" width=70%>
+<img src="data visualisations/mental-health-referrals.png" width=70%>
 
 ## Link to data visualisations
 
