@@ -13,7 +13,7 @@ NHS England publishes [data on available mental illness beds](https://www.englan
 
 The data used in the story can be found [here](). 
 
-<img src="OAP-March-2021.png" width=70%>
+<img src="data visualisations/bed-occupancy.png" width=70%>
 
 **2. Bed occupancy rates**
 
