@@ -51,6 +51,22 @@
   }
 }
 
+.image-adrian-elsworth {
+  width:50%;
+  float:right;
+  margin-left: 0;
+  margin-right: 0;
+  padding:3%;
+}
+
+.image-jessica-slingsby {
+  width:50%;
+  float:left;
+  margin-left: 0;
+  margin-right: 0;
+  padding:3%;
+}
+
 figcaption {
   font-size:14px;
   color: grey;
@@ -72,7 +88,7 @@ hr.solid {
 
 /** About the data box **/
 .data-infobox {
-  background-color: #bde0fe; 
+  background-color: #b3cde3;
   border-left-color: #f1c40f;
   padding: 0.9375rem 0.9375rem 0.9375rem 0.625rem;
   margin: 1.25rem 1.25rem 1.25rem 0.3125rem;
