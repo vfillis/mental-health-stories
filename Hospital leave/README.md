@@ -19,14 +19,14 @@ The data can be found [here]().
 
 **1. The mental health trusts with the highest decrease in hospital leave between February 2020 and May 2020**
 
-<img src="data visualisations/highest-decrease-in-leave.png" width=70%>
+<img src="highest-decrease-in-leave.png" width=70%>
 
 **2. Closer look at individual trusts**
 
-<img src="data visualisations/Derbyshire-Healthcare.png" width=70%>
+<img src="Derbyshire-Healthcare.png" width=70%>
 
 **3. Some trusts almost back at pre-pandemic levels**
 
-<img src="data visualisations/trusts-almost-pre-pandemic.png" width=70%>
+<img src="trusts-almost-pre-pandemic.png" width=70%>
 
 
