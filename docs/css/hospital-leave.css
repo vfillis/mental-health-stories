@@ -8,6 +8,10 @@
   color: black;
 }
 
+.heading a {
+  color: grey;
+}
+
 .heading {
   max-width: 930px;
   padding: 0 15px 50px;
