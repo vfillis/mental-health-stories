@@ -1,7 +1,7 @@
 # "I didn't get any leave at all" — mental health patients unable to leave hospital when pandemic hit
 **The pandemic has led to reductions in the leave patients were granted from mental health wards. Although lockdown restrictions have been easing, leave is still behind pre-pandemic levels.**
 
-The article was published on 31 August 2021 and can be read [here]().
+The article was published on 31 August 2021 and can be read [here](https://vfillis.github.io/mental-health-stories/html/hospital-leave.html).
 
 ## Data analysis and visualisation
 
@@ -15,7 +15,7 @@ Therefore, only data from 23 trusts was analysed.
 
 Figures include home leave and leave of absence, although not all trusts were able to provide this breakdown and provided the total number of leaves instead.
 
-The data can be found [here](). 
+The data can be found [here](https://github.com/vfillis/mental-health-stories/blob/main/Hospital%20leave/FOI-data-hospital-leave.xlsx). 
 
 **1. The mental health trusts with the highest decrease in hospital leave between February 2020 and May 2020**
 
